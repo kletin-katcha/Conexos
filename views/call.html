@@ -1,0 +1,31 @@
+<div class="call-container" id="callContainer">
+    <!-- O vídeo ou imagem de fundo será definido pelo JS -->
+    <video class="call-background-video" id="remoteVideo" loop muted autoplay playsinline></video>
+    <div class="call-background-image" id="customBackgroundImage"></div>
+
+    <div class="call-content">
+        <!-- Informações do Chamador (centralizadas) -->
+        <div class="caller-info-wrapper">
+            <p class="call-status-text" id="callStatusText">Chamando...</p>
+            <div class="caller-avatar-container">
+                 <img src="https://placehold.co/120x120/1e1e1e/white?text=?" alt="Avatar do Chamador" class="caller-avatar" id="callerAvatar">
+            </div>
+            <h2 class="caller-name" id="callerName">Carregando...</h2>
+        </div>
+
+        <!-- Controles da Chamada (na parte inferior) -->
+        <div class="call-controls-wrapper">
+            <div class="call-controls">
+                <button class="control-button" id="toggleMicBtn" title="Ativar/Desativar Microfone"><i class="fas fa-microphone"></i></button>
+                <button class="control-button" id="toggleCameraBtn" title="Ativar/Desativar Câmera"><i class="fas fa-video"></i></button>
+                <button class="control-button" id="changeBackgroundBtn" title="Alterar Fundo"><i class="fa-solid fa-image"></i></button>
+                <button class="control-button end-call" id="endCallBtn" title="Encerrar Chamada"><i class="fas fa-phone-slash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vídeo Local (canto) -->
+    <img src="https://placehold.co/180x120/5e5ce5/white?text=Sua+Câmera" alt="Sua Câmera" class="local-video" id="localVideo">
+</div>
+
+<input type="file" id="backgroundUploadInput" accept="image/*" style="display: none;">

@@ -1,0 +1,74 @@
+<main class="content-notifications">
+    <header class="alerts-header">
+        <h1>Central de Alertas</h1>
+        <button class="btn-secondary btn-clear-all hidden">Limpar tudo</button>
+    </header>
+
+    <section class="alerts-panel">
+        <nav class="alerts-filters">
+            <button class="alert-filter-link active" data-tab="all">Todas</button>
+            <button class="alert-filter-link" data-tab="engagement">Engajamento</button>
+            <button class="alert-filter-link" data-tab="requests">Solicitações</button>
+            <button class="alert-filter-link" data-tab="events">Eventos</button>
+            <button class="alert-filter-link" data-tab="system">Sistema</button>
+        </nav>
+        <div class="alerts-content">
+            <div id="all" class="tab-pane active">
+                <div class="alert-list" id="notificationListAll"></div>
+                <div class="empty-tab-state hidden" id="no-notifications-message-all">
+                     <i class="fa-solid fa-bell-slash"></i>
+                     <h3>Tudo em dia!</h3>
+                     <p>Você não tem nenhuma notificação nova.</p>
+                </div>
+            </div>
+            <div id="engagement" class="tab-pane">
+                <div class="alert-list" id="notificationListEngagement"></div>
+                <div class="empty-tab-state hidden" id="no-notifications-message-engagement">
+                     <i class="fa-solid fa-heart"></i>
+                     <h3>Nenhum engajamento recente</h3>
+                     <p>Curtidas, menções e comentários aparecerão aqui.</p>
+                </div>
+            </div>
+            <div id="requests" class="tab-pane">
+                <div class="alert-list" id="notificationListRequests"></div>
+                 <div class="empty-tab-state hidden" id="no-notifications-message-requests">
+                     <i class="fa-solid fa-user-plus"></i>
+                     <h3>Nenhuma solicitação pendente</h3>
+                     <p>Convites e novos seguidores aparecerão aqui.</p>
+                </div>
+            </div>
+            <div id="events" class="tab-pane">
+                <div class="alert-list" id="notificationListEvents"></div>
+                 <div class="empty-tab-state hidden" id="no-notifications-message-events">
+                     <i class="fa-solid fa-calendar-check"></i>
+                     <h3>Nenhum evento agendado</h3>
+                     <p>Lembretes e eventos da comunidade aparecerão aqui.</p>
+                </div>
+            </div>
+            <div id="system" class="tab-pane">
+                <div class="alert-list" id="notificationListSystem"></div>
+                 <div class="empty-tab-state hidden" id="no-notifications-message-system">
+                     <i class="fa-solid fa-shield-halved"></i>
+                     <h3>Nenhum aviso do sistema</h3>
+                     <p>Atualizações e avisos importantes aparecerão aqui.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Modals -->
+<div id="confirmation-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2>Limpar Todas as Notificações?</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <p>Tem certeza? Esta ação não pode ser desfeita.</p>
+        <div class="form-actions" style="justify-content: flex-end; display:flex; gap: 1rem; margin-top: 1rem;">
+            <button type="button" class="btn-secondary" id="cancel-clear-all-btn">Cancelar</button>
+            <button type="button" class="btn-danger" id="confirm-clear-all-btn">Limpar</button>
+        </div>
+    </div>
+</div>
+

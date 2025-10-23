@@ -1,0 +1,83 @@
+<!-- =================================
+   CHAT.HTML - REMAKE v3.0
+   Design: "Cyberdeck Interface"
+==================================== -->
+<main class="content-chat-container">
+    <!-- Efeito de fundo CRT/Scanlines -->
+    <div class="scanline-overlay"></div>
+
+    <!-- Container principal do chat -->
+    <div class="chat-deck">
+
+        <!-- Header com abas de conversa -->
+        <header class="chat-conversations-header">
+            <div class="header-title">
+                <i class="fa-solid fa-terminal"></i>
+                <h2>CANAIS</h2>
+            </div>
+            <div class="conversations-tabs-container">
+                <nav class="conversations-tabs" id="conversations-list-panel">
+                    <!-- Abas de conversa serão injetadas aqui pelo JS -->
+                </nav>
+            </div>
+             <div class="header-actions">
+                <button class="new-chat-btn" id="new-chat-btn" title="Nova Conversa"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </header>
+
+        <!-- Janela de Chat Ativa -->
+        <section class="chat-window-active" id="chat-window-active">
+            <!-- Estado Inicial: Nenhuma conversa selecionada -->
+            <div id="no-chat-selected-view" class="initial-view">
+                <i class="fa-solid fa-power-off"></i>
+                <h2>Sem Sinal</h2>
+                <p>Selecione um chat para iniciar uma conversa.</p>
+            </div>
+            
+            <!-- O conteúdo do Chat (header, message-area, input-area) será inserido aqui pelo JS -->
+
+        </section>
+    </div>
+</main>
+
+<!-- Modais -->
+<div id="gif-picker-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2>Selecionar GIF_</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="gif-picker-body">
+            <input type="search" id="gif-search-input" class="form-control" placeholder="Buscar GIFs://">
+            <div id="gif-picker-grid" class="gif-picker-grid">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="emoji-picker-modal" class="modal-overlay hidden">
+    <div class="modal-content emoji-modal-content">
+        <header class="modal-header">
+            <h2>Selecionar Emoji_</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div id="emoji-picker" class="emoji-picker"></div>
+    </div>
+</div>
+
+<!-- NOVO: Modal para Iniciar Nova Conversa -->
+<div id="new-chat-modal" class="modal-overlay hidden">
+    <div class="modal-content new-chat-modal-content">
+        <header class="modal-header">
+            <h2>Iniciar Conexão_</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="new-chat-body">
+            <input type="search" id="new-chat-search-input" class="form-control" placeholder="Buscar usuário://">
+            <ul id="new-chat-user-list" class="new-chat-user-list">
+                <!-- Lista de usuários será renderizada aqui -->
+            </ul>
+        </div>
+    </div>
+</div>

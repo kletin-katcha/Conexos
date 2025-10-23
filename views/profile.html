@@ -1,0 +1,143 @@
+<!-- Inputs de arquivo ocultos -->
+<input type="file" id="banner-upload-input" accept="image/*" style="display: none;">
+<input type="file" id="profile-pic-upload-input" accept="image/*" style="display: none;">
+
+<main class="content-profile">
+    <div class="profile-grid">
+        
+        <!-- Coluna da Esquerda: Identidade e Stats -->
+        <aside class="profile-sidebar">
+            <div class="identity-card glass-card">
+                <div class="profile-avatar-wrapper" id="edit-pic-trigger">
+                    <img src="https://i.pinimg.com/736x/6a/bc/d9/6abcd9f34ebc8fd7dce5b3edf69a0126.jpg" alt="Foto do Perfil" id="profile-pic-display">
+                    <div class="edit-pic-overlay"><i class="fa-solid fa-camera"></i></div>
+                </div>
+                <h1 id="profile-name-display">Seu Nome</h1>
+                <h2 id="profile-class-display">Classe Indefinida</h2>
+                <div class="level-bar-bg">
+                    <div id="level-progress"></div>
+                </div>
+                <div class="level-info">
+                    <span id="level-display">Nível 1</span>
+                    <span id="xp-display">600 / 1000 XP</span>
+                </div>
+            </div>
+
+            <div class="stats-card glass-card">
+                <div class="stats-grid">
+                    <div class="attribute-box"><div class="value" id="followers-display">0</div><div class="label">Aliança</div></div>
+                    <div class="attribute-box"><div class="value" id="quests-display">0</div><div class="label">Missões</div></div>
+                    <div class="attribute-box"><div class="value" id="profile-faction-display">N/A</div><div class="label">Facção</div></div>
+                    <div class="attribute-box"><div class="value" id="achievements-display">0/0</div><div class="label">Conquistas</div></div>
+                </div>
+            </div>
+
+            <div class="bio-card glass-card">
+                <p id="profile-bio-display">Sua bio inspiradora vai aqui. Edite seu perfil para se apresentar à comunidade.</p>
+            </div>
+        </aside>
+
+        <!-- Coluna da Direita: Banner e Conteúdo Principal -->
+        <div class="profile-main">
+            <header class="profile-header-banner">
+                <img src="https://i.pinimg.com/originals/c7/a9/51/c7a9514e8b991255b5d8021c789f21f7.gif" alt="Banner do Perfil" id="banner-display">
+                <div class="banner-overlay"></div>
+                <div class="banner-actions">
+                    <button id="open-settings-modal-btn" class="btn-overlay" title="Configurações"><i class="fa-solid fa-gear"></i></button>
+                    <button id="edit-banner-trigger" class="btn-overlay" title="Alterar Fundo"><i class="fa-solid fa-image"></i></button>
+                    <button id="open-edit-profile-modal-btn" class="btn-overlay"><i class="fa-solid fa-user-pen"></i> Editar Ficha</button>
+                </div>
+            </header>
+
+            <section class="profile-content-tabs">
+                <nav class="tabs-nav">
+                    <button class="tab-link active" data-tab="quest-log"><i class="fa-solid fa-scroll"></i> <span>Log</span></button>
+                    <button class="tab-link" data-tab="inventory"><i class="fa-solid fa-backpack"></i> <span>Inventário</span></button>
+                    <button class="tab-link" data-tab="biblioteca"><i class="fa-solid fa-gamepad"></i> <span>Biblioteca</span></button>
+                    <button class="tab-link" data-tab="conquistas"><i class="fa-solid fa-trophy"></i> <span>Conquistas</span></button>
+                </nav>
+                <div class="tabs-content">
+                    <div id="quest-log" class="tab-pane active"><div class="post-grid"></div></div>
+                    <div id="inventory" class="tab-pane"><div class="inventory-grid"></div></div>
+                    <div id="biblioteca" class="tab-pane"><div class="library-grid"></div></div>
+                    <div id="conquistas" class="tab-pane"><div class="achievements-grid"></div></div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</main>
+
+<!-- ============================ -->
+<!-- ===== MODAIS DO PERFIL ===== -->
+<!-- ============================ -->
+
+<!-- MODAL DE CONFIGURAÇÕES (REMAKE) -->
+<div id="settings-modal" class="modal-overlay hidden">
+    <div class="modal-content glass-card remake-settings">
+        <header class="modal-header">
+            <h2><i class="fa-solid fa-sliders"></i> Configurações</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="settings-body">
+            <ul class="settings-menu-v2">
+                <li>
+                    <a href="#" id="edit-profile-from-settings" class="setting-item-v2">
+                        <i class="fa-solid fa-user-pen setting-icon"></i>
+                        <div class="setting-text">
+                            <h4>Editar Ficha</h4>
+                            <p>Altere seu nome, bio e classe.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/ajuda" class="setting-item-v2">
+                        <i class="fa-solid fa-circle-question setting-icon"></i>
+                        <div class="setting-text">
+                            <h4>Ajuda e Suporte</h4>
+                            <p>Acesse a central de ajuda.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <div class="setting-item-v2">
+                        <i class="fa-solid fa-palette setting-icon"></i>
+                        <div class="setting-text">
+                            <h4>Tema da Interface</h4>
+                            <p>Alterne entre claro e escuro.</p>
+                        </div>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="theme-toggle-switch">
+                                <input type="checkbox" id="theme-toggle-switch" />
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn-logout-v2" id="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair da Conta
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE EDITAR PERFIL -->
+<div id="edit-profile-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+         <header class="modal-header">
+            <h2>Editar Painel do Explorador</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <form id="edit-profile-form" style="padding: 1.5rem;">
+            <div class="form-group"><label for="profile-name-input">Nome de Explorador</label><input type="text" id="profile-name-input" class="form-control"></div>
+            <div class="form-group"><label for="profile-bio-input">Bio / História</label><textarea id="profile-bio-input" class="form-control" rows="3"></textarea></div>
+            <div class="form-group"><label for="profile-class-input">Classe</label><input type="text" id="profile-class-input" class="form-control" placeholder="Ex: Streamer, Dev, Artista"></div>
+            <div class="form-group"><label for="profile-faction-input">Facção</label><input type="text" id="profile-faction-input" class="form-control" placeholder="Ex: PC Master Race, Sonysta"></div>
+            <div class="form-group"><label for="profile-accent-color-input">Cor de Destaque</label><input type="color" id="profile-accent-color-input" class="form-control" style="height: 40px; padding: 5px;"></div>
+            <div class="form-actions" style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1rem;"><button type="button" class="btn-secondary close-modal-btn">Cancelar</button><button type="submit" class="btn-primary">Salvar</button></div>
+        </form>
+    </div>
+</div>

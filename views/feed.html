@@ -1,0 +1,221 @@
+<!-- Hidden File Inputs for uploads -->
+<input type="file" id="post-media-input" accept="image/*,video/*" style="display: none;">
+<input type="file" id="story-image-input" accept="image/*" style="display: none;" required>
+
+<!-- ===== Content Grid (Feed + Right Sidebar) ===== -->
+<div class="content-grid-v2">
+    <!-- ===== Main Content Feed ===== -->
+    <main class="content-feed-v2">
+        <!-- Stories Section -->
+        <section class="stories-section-v2">
+             <div class="story-card-v2 add-story" data-story-user="add">
+                <div class="add-story-icon"><i class="fa-solid fa-plus"></i></div>
+                <div class="add-story-label">Novo Sinal</div>
+            </div>
+            <!-- Stories will be rendered by JS -->
+        </section>
+
+        <!-- Create Post Section (Styled as New Journey Button) -->
+        <section class="create-post-card">
+            <img src="https://i.pinimg.com/736x/6a/bc/d9/6abcd9f34ebc8fd7dce5b3edf69a0126.jpg" alt="Seu Avatar" class="create-post-avatar">
+            <div class="create-post-input" id="open-create-post-modal-btn">
+                <i class="fa-solid fa-hashtag"></i> Começar uma Nova Jornada
+            </div>
+        </section>
+        
+        <!-- Feed Container para os Posts -->
+        <div id="feed-container-v2">
+            <!-- Posts serão carregados dinamicamente aqui pelo JS -->
+        </div>
+    </main>
+
+    <!-- ===== Right Sidebar ===== -->
+    <aside class="right-sidebar-v2">
+        <div class="sidebar-card-v2">
+            <h4>Sugestões para Você</h4>
+            <ul class="suggestions-list">
+                <!-- Itens de sugestão serão renderizados aqui pelo JS -->
+            </ul>
+        </div>
+
+        <div class="sidebar-card-v2">
+            <h4>Plogs</h4>
+            <div class="plogs-grid">
+                <div class="plog-item" data-plog="live" style="background-image: url('https://i.pinimg.com/1200x/37/8c/42/378c4240fd333d1e3e17b58b4cfafa2a.jpg');"><span>Ao Vivo</span></div>
+                <div class="plog-item" data-plog="game" style="background-image: url('https://gameluster.com/wp-content/uploads/2023/05/vg.jpg');"><span>Game</span></div>
+                <div class="plog-item" data-plog="synthwave" style="background-image: url('https://images.hdqwalls.com/download/synthwave-cityscape-4k-6x-1920x1080.jpg');"><span>SynthWave</span></div>
+                <div class="plog-item" data-plog="pixelart" style="background-image: url('https://i.pinimg.com/originals/36/a4/75/36a47579511bcddf77651709e88357e8.jpg');"><span>PixelArt</span></div>
+            </div>
+        </div>
+        <div class="sidebar-card-v2">
+            <h4>Salas de Chat</h4>
+            <ul class="voice-channels-list">
+                <!-- Canais de voz serão renderizados aqui pelo JS -->
+            </ul>
+        </div>
+    </aside>
+</div>
+
+
+<!-- ===================================== -->
+<!-- ===== MODAIS DO FEED (REMAKE) ===== -->
+<!-- ===================================== -->
+
+<!-- Create Post Modal (REMAKE) -->
+<div id="create-post-modal" class="modal-overlay hidden">
+    <div class="modal-content remake-post">
+        <header class="modal-header">
+            <h2>Criar Publicação</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <form id="create-post-form">
+            <div class="post-author-info">
+                <img src="https://i.pinimg.com/736x/6a/bc/d9/6abcd9f34ebc8fd7dce5b3edf69a0126.jpg" alt="Seu Avatar">
+                <span>Você</span>
+            </div>
+            <textarea id="post-text-input" class="form-control" rows="5" placeholder="O que está acontecendo?"></textarea>
+            <div id="post-media-preview-container" class="media-preview-container hidden"></div>
+            <div class="modal-actions">
+                <div class="action-icons">
+                    <button type="button" class="action-btn" id="post-media-btn" title="Adicionar Imagem/Vídeo"><i class="fa-solid fa-image"></i></button>
+                    <!-- NOVO: Botão Spotify -->
+                    <button type="button" class="action-btn" id="post-music-btn" title="Adicionar Música"><i class="fa-brands fa-spotify"></i></button>
+                    <button type="button" class="action-btn" title="Sentimento"><i class="fa-regular fa-face-smile"></i></button>
+                </div>
+                <button type="submit" class="btn-primary" disabled>Postar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add Story Modal (REMAKE) -->
+<div id="add-story-modal-v2" class="modal-overlay hidden">
+    <div class="modal-content remake-story">
+        <header class="modal-header">
+            <h2>Transmitir Novo Sinal</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <form id="add-story-form-v2">
+            <label for="story-image-input" class="remake-upload-area">
+                <div id="story-image-preview-container-v2" class="remake-upload-preview-container">
+                    <!-- Preview da imagem aqui -->
+                </div>
+                <div class="remake-upload-placeholder">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Clique para escolher uma imagem</span>
+                </div>
+            </label>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary close-modal-btn">Descartar</button>
+                <button type="submit" class="btn-primary" disabled>Transmitir Sinal</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Story Viewer Modal (NOVO E FUNCIONAL) -->
+<div id="story-viewer-modal-v2" class="modal-overlay hidden">
+    <button class="close-modal-btn global-close">&times;</button>
+    <div class="story-viewer-wrapper">
+        <button class="story-nav-btn prev" id="story-prev-btn-v2"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="story-viewer-content">
+            <div class="story-progress-bars" id="story-progress-bars-container-v2"></div>
+            <header class="story-header">
+                <div class="story-user-info">
+                    <img id="story-viewer-avatar-v2" src="" alt="Avatar">
+                    <div>
+                        <span id="story-viewer-username-v2"></span>
+                        <span id="story-viewer-timestamp-v2"></span>
+                    </div>
+                </div>
+            </header>
+            <div class="story-media-container">
+                <img id="story-viewer-media-v2" src="" alt="Mídia do Sinal">
+            </div>
+        </div>
+        <button class="story-nav-btn next" id="story-next-btn-v2"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+</div>
+
+<!-- Comments Modal (ATUALIZADO) -->
+<div id="comments-modal" class="modal-overlay hidden">
+    <div class="modal-content comments-modal-content">
+        <header class="modal-header">
+            <h2 id="comments-modal-title">Comentários</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="comments-modal-body" id="comments-list">
+            <!-- Comentários serão renderizados aqui -->
+        </div>
+        <footer class="comments-modal-footer">
+            <form id="comment-form">
+                <img src="https://i.pinimg.com/736x/6a/bc/d9/6abcd9f34ebc8fd7dce5b3edf69a0126.jpg" alt="Seu Avatar">
+                <div class="comment-input-wrapper">
+                    <input type="text" id="comment-input" class="form-control" placeholder="Adicione um comentário..." autocomplete="off">
+                    <button type="button" class="input-action-btn" id="comment-emoji-btn" title="Emojis"><i class="fa-regular fa-face-smile"></i></button>
+                    <button type="button" class="input-action-btn" id="comment-gif-btn" title="GIF"><i class="fa-solid fa-gift"></i></button>
+                </div>
+                <button type="submit" class="btn-send-comment"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </footer>
+    </div>
+</div>
+
+<!-- Modais de Emojis e GIFs para o Feed (copiado do chat) -->
+<div id="gif-picker-modal-feed" class="modal-overlay hidden">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2>Selecionar GIF_</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="gif-picker-body">
+            <input type="search" id="gif-search-input-feed" class="form-control" placeholder="Buscar GIFs://">
+            <div id="gif-picker-grid-feed" class="gif-picker-grid">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="emoji-picker-modal-feed" class="modal-overlay hidden">
+    <div class="modal-content emoji-modal-content">
+        <header class="modal-header">
+            <h2>Selecionar Emoji_</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div id="emoji-picker-feed" class="emoji-picker"></div>
+    </div>
+</div>
+
+<!-- NOVO: Modal de busca do Spotify -->
+<div id="spotify-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2><i class="fa-brands fa-spotify" style="color: #1DB954;"></i> Adicionar Música do Spotify</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="spotify-search-container">
+            <input type="search" id="spotify-search-input" class="form-control" placeholder="Buscar por música ou artista...">
+            <div id="spotify-results" class="spotify-results-list">
+                <!-- Resultados da busca aparecerão aqui -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NOVO: Modal do Plog -->
+<div id="plog-viewer-modal" class="modal-overlay hidden">
+    <div class="modal-content plog-modal">
+        <header class="modal-header">
+            <h2 id="plog-modal-title"></h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="plog-modal-content" id="plog-modal-content">
+            <!-- Conteúdo do Plog será injetado aqui -->
+        </div>
+    </div>
+</div>
+
+
+<!-- Toast Notification -->
+<div id="toast-message" class="toast-message"></div>

@@ -1,0 +1,70 @@
+<canvas id="galaxy-canvas"></canvas>
+    
+<!-- Input de arquivo oculto para upload -->
+<input type="file" id="image-upload-input" accept="image/*" class="hidden">
+
+<div class="terminal-container">
+    <!-- Header -->
+    <header class="terminal-header">
+        <button class="header-action-btn mobile-toggle" id="toggle-nav-btn" title="Navegação"><i class="fa-solid fa-bars"></i></button>
+        <div class="community-id">
+            <img id="hub-community-avatar" src="https://placehold.co/40x40/7e7ee3/FFFFFF?text=C" alt="Avatar da Comunidade">
+            <h1 id="hub-community-name">Carregando...</h1>
+        </div>
+        <div class="header-actions">
+            <button class="header-action-btn" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="header-action-btn" id="hub-back-btn" title="Sair da Comunidade"><i class="fa-solid fa-door-open"></i></button>
+        </div>
+    </header>
+
+    <!-- Navigation Deck (Left) -->
+    <aside class="navigation-deck" id="navigation-deck">
+        <nav class="channel-navigator"></nav>
+    </aside>
+
+    <!-- User Panel -->
+    <div class="user-panel" id="user-panel">
+        <img id="current-user-avatar" src="https://placehold.co/40x40/1e1e1e/FFFFFF?text=U" alt="Seu avatar">
+        <span id="current-user-name">Você</span>
+    </div>
+
+    <!-- Terminal (Center) -->
+    <main class="terminal-main">
+        <div class="terminal-content-area" id="terminal-content-area">
+            <!-- Conteúdo do canal e chat aqui -->
+        </div>
+        <footer class="terminal-footer" id="terminal-footer">
+            <!-- Input de chat aqui -->
+        </footer>
+    </main>
+
+    <!-- Members Panel (Right) -->
+    <aside class="members-panel" id="members-panel">
+        <!-- Lista de membros aqui -->
+    </aside>
+</div>
+
+<!-- Modals -->
+<div id="gif-picker-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2>Selecione um GIF</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div class="gif-picker-body">
+            <input type="search" id="gif-search-input" class="form-control" placeholder="Buscar GIFs na GIPHY...">
+            <div id="gif-picker-grid" class="gif-picker-grid"><div class="spinner"></div></div>
+        </div>
+    </div>
+</div>
+<div id="emoji-picker-modal" class="modal-overlay hidden">
+     <div class="modal-content">
+        <header class="modal-header">
+            <h2>Selecione um Emoji</h2>
+            <button class="close-modal-btn">&times;</button>
+        </header>
+        <div id="emoji-picker-body" class="emoji-picker-body">
+            <!-- Emojis serão populados pelo JS -->
+        </div>
+    </div>
+</div>

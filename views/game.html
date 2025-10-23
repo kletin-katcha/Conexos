@@ -1,0 +1,85 @@
+<!-- Conteúdo Principal do Game Hub -->
+<main class="content-game">
+    <header class="game-hub-header">
+        <div class="header-text">
+            <h1>Conexo Play</h1>
+            <p>O seu universo de notícias, jogos e novas jornadas.</p>
+        </div>
+        <div class="coin-wallet">
+            <div class="wallet-title">Sua Carteira</div>
+            <div class="coin-balance">
+                <i class="fa-solid fa-coins"></i>
+                <span id="coin-balance-amount">0</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Seção de Missões -->
+    <section class="game-section">
+        <h2 class="section-title"><i class="fa-solid fa-tasks"></i> Missões Diárias</h2>
+        <div class="missions-grid" id="missions-grid">
+            <!-- Cards de missões serão renderizados aqui -->
+        </div>
+    </section>
+
+    <!-- Seção da Loja -->
+    <section class="game-section">
+        <h2 class="section-title"><i class="fa-solid fa-shopping-cart"></i> Nossa Loja</h2>
+        <div class="items-grid" id="store-grid">
+            <!-- Cards de jogos da loja serão renderizados aqui -->
+        </div>
+    </section>
+
+    <!-- Seção de Jogos Instantâneos -->
+    <section class="game-section">
+        <h2 class="section-title"><i class="fa-solid fa-rocket"></i> Jogar Agora</h2>
+        <p class="section-subtitle">Jogos instantâneos, sem precisar baixar.</p>
+        <div class="items-grid" id="online-games-grid">
+             <!-- Cards de jogos casuais serão renderizados aqui -->
+        </div>
+    </section>
+
+    <!-- Seção de Notícias -->
+    <section class="game-section">
+        <h2 class="section-title"><i class="fa-solid fa-newspaper"></i> Últimas Notícias</h2>
+        <div class="news-grid-container" id="news-grid">
+             <!-- Cards de notícias serão carregados aqui -->
+        </div>
+    </section>
+</main>
+
+<!-- Modal para Jogar Online (REMODELADO) -->
+<div id="game-play-modal" class="modal-overlay hidden">
+    <div class="modal-content game-modal-window" id="game-modal-window">
+        <header class="game-modal-titlebar">
+            <span id="game-modal-title"></span>
+            <div class="window-controls">
+                <button class="win-btn maximize" id="game-maximize-btn" title="Tela Cheia"><i class="fa-solid fa-clone"></i></button>
+                <button class="win-btn close close-modal-btn" title="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </header>
+        <div class="game-modal-body">
+            <iframe id="game-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+
+<!-- NOVO: Modal para Leitura de Notícias -->
+<div id="news-reader-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button class="close-modal-btn">&times;</button>
+        <img id="news-modal-image" src="" alt="Imagem da Notícia">
+        <div class="news-modal-content">
+            <h2 id="news-modal-title"></h2>
+            <div class="news-modal-meta">
+                <span><i class="fa-solid fa-newspaper"></i> <strong id="news-modal-source"></strong></span>
+                <span><i class="fa-solid fa-calendar-days"></i> <span id="news-modal-date"></span></span>
+            </div>
+            <p id="news-modal-body"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast-message" class="toast-message"></div>
