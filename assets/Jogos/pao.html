@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toast Catcher Game | @coding.stella</title>
+  <style>
+    :root {
+      font-family: system-ui;
+      font-variant-numeric: tabular-nums;
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #7DC8CF;
+      overflow: hidden;
+    }
+
+    .frame {
+      border: 6px solid #67442b;
+      border-radius: 16px;
+      background: #67442b;
+      max-height: 95vh;
+      max-width: 95vw;
+      aspect-ratio: 450 / 680;
+      display: flex;
+    }
+
+    #game {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        user-select: none;
+    }
+    
+    svg text {
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
+    .toast {
+      cursor: pointer;
+    }
+    .toast__wings {
+      animation: wings-flapping linear infinite 0.4s;
+      transform-origin: center 85%;
+      pointer-events: none;
+    }
+    .toast__eyes {
+      animation: blink linear infinite 2s;
+      transform-origin: 15px;
+    }
+
+    @keyframes wings-flapping {
+      0%, 100% {
+        scale: 1 1;
+      }
+      50% {
+        scale: 1 0.8;
+      }
+    }
+    @keyframes blink {
+      0%, 90% {
+        scale: 1 1;
+      }
+      100% {
+        scale: 1 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <svg id="game" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 450 680">
+      <path fill="#7DC8CF" d="M0 1h450v680H0z"/>
+      <path fill="#976F4A" d="M0 0h450v80H0z"/>
+      <path fill="#FDC571" d="M0 631h450v50H0z"/>
+      <path fill="#67442B" d="M0 74h450v6H0z"/>
+      <rect width="430" height="54" x="10" y="10" fill="#67442B" rx="12"/>
+      <path fill="#FFE2B4" d="M391.652 25.303c3.524-3.523 9.148-3.665 12.842-.427l.017-.016.352-.334a9.407 9.407 0 0 1 13.285 13.286l-.333.352-13.303 13.303-13.304-13.304.016-.017c-3.238-3.695-3.097-9.318.428-12.843Z"/>
+      <g fill="#FEDAA1">
+        <text id="score" x="25" y="46">00000000</text>
+        <text id="lives" x="345" y="46"></text>
+      </g>
+
+      <g font-size="36" id="game-over-screen" pointer-events="none" visibility="hidden">
+        <text x="225" y="220" text-anchor="middle" stroke="#603719" stroke-width="10">GAME OVER</text>
+        <text x="225" y="220" text-anchor="middle" fill="#f16f33">GAME OVER</text>
+        <text id="final-score-info" x="225" y="260" text-anchor="middle" font-size="24" fill="white">Final Score: 0</text>
+      </g>
+
+      <!-- símbolo do toast -->
+      <symbol id="toast" xmlns="http://www.w3.org/2000/svg" width="95" height="57" viewBox="0 0 95 57">
+        <path class="toast__wings" fill="#FDE2A9" stroke="#7F3412" stroke-linejoin="round" stroke-width="3" d="M3.793 18.165c.905-.484 1.938-.526 2.887-.399 1.88.252 4.141 1.27 6.375 2.527 3.967 2.234 8.385 5.539 11.558 8.103l1.279 1.048.105.096a1.5 1.5 0 0 1 .424.87l1.47 11.701a1.5 1.5 0 0 1-.432 1.254c-3.981 3.94-8.147 4.232-10.628 2.541-1.168-.796-2.067-2.187-1.735-3.753.053-.25.135-.483.24-.702-1.743-.454-3.15-1.018-4.257-1.658-1.747-1.01-2.903-2.31-3.22-3.799-.292-1.363.181-2.602 1.058-3.47-1.424-.708-2.823-1.57-4-2.646-2.349-2.147-3.818-5.157-2.921-9.21l.05-.2c.265-.997.838-1.817 1.747-2.303Zm85.793-2.258c-1.486-.17-3.23.45-4.847 1.238-2.93 1.426-6.42 3.904-9.438 6.2l-1.26.971-.133.116a1.5 1.5 0 0 0-.448 1.1l.251 12.107a1.5 1.5 0 0 0 1.44 1.468c3.919.158 6.967-.368 9.192-1.296 2.19-.913 3.742-2.294 4.306-3.937.288-.837.307-1.725.002-2.556-.304-.828-.892-1.499-1.647-1.973a5.05 5.05 0 0 0-.67-.351 23.515 23.515 0 0 0 2.936-2.553c1.003-1.038 1.868-2.154 2.475-3.29.6-1.126.998-2.366.924-3.61-.055-.913-.297-1.79-.868-2.481-.595-.72-1.4-1.06-2.215-1.153Z"/>
+        <path fill="#C7511B" d="M63.941.713c6.616-.394 12.298 4.65 12.692 11.266l.12 2.016a12.94 12.94 0 0 1-1.657 7.165l1.421 23.884a8 8 0 0 1-7.51 8.461l-34.86 2.074a8 8 0 0 1-8.461-7.511l-1.343-22.575a12.946 12.946 0 0 1-3.543-8.17l-.06-1.017c-.427-7.167 5.038-13.323 12.204-13.75L63.941.714Z"/>
+        <path fill="#FEBB63" d="M64.353 3.719a9 9 0 0 1 9.518 8.45l.177 2.969a10.949 10.949 0 0 1-1.721 6.587l1.39 23.368a5 5 0 0 1-4.694 5.288l-32.78 1.95a5 5 0 0 1-5.288-4.694l-1.362-22.894a10.953 10.953 0 0 1-2.882-6.789l-.058-.973c-.36-6.064 4.263-11.273 10.327-11.634L64.353 3.72Z"/>
+        <path stroke="#7F3412" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M49.28 31.137c2.615 1.848 5.61 1.67 7.488-.445"/>
+        <g class="toast__eyes">
+          <ellipse cx="61.42" cy="25.123" fill="#7F3412" rx="2.5" ry="3.5"/>
+          <ellipse cx="42.994" cy="26.502" fill="#7F3412" rx="2.5" ry="3.5"/>
+        </g>
+      </symbol>
+    </svg>
+  </div>
+
+  <script>
+    class Game {
+      constructor() {
+        this.svg = document.getElementById('game')
+        this.toastSymbolId = '#toast'
+        this.scoreEl = document.getElementById('score')
+        this.livesEl = document.getElementById('lives')
+        this.finalScoreInfoEl = document.getElementById('final-score-info')
+        this.gameOverScreenEl = document.getElementById('game-over-screen')
+        this.toasts = []
+        this.score = 0
+        this.spawnInterval = 2000
+        this.remainingLives = 5
+        this.gameOver = false
+        this.gameStartTime = performance.now()
+
+        this.loop = this.loop.bind(this)
+        this.spawnToast()
+        this.startSpawnTimer()
+        this.updateLives()
+        requestAnimationFrame(this.loop)
+      }
+
+      startSpawnTimer() {
+        if (this.spawnTimer) clearInterval(this.spawnTimer)
+        
+        const gameTimeSeconds = (performance.now() - this.gameStartTime) / 1000
+        this.spawnInterval = Math.max(500, 2000 - Math.floor(gameTimeSeconds / 10) * 100)
+        
+        this.spawnTimer = setInterval(() => {
+          if (!this.gameOver) {
+            this.spawnToast()
+            this.startSpawnTimer()
+          }
+        }, this.spawnInterval)
+      }
+
+      spawnToast() {
+        if (this.gameOver) return
+
+        const startX = Math.random() * 350 + 25
+        const endX = Math.random() * 350 + 25
+        const peakY = 200 + Math.random() * 50
+
+        const toast = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+        toast.setAttribute('href', this.toastSymbolId)
+        toast.setAttribute('class', 'toast')
+        toast.setAttribute('x', startX)
+        toast.setAttribute('y', 680)
+        this.svg.appendChild(toast)
+
+        const toastObj = {
+          el: toast,
+          startX,
+          endX,
+          startY: 680,
+          peakY,
+          startTime: performance.now(),
+          duration: 3000,
+          clicked: false,
+          upwardSpeed: -8,
+          reachedBottom: false
+        }
+
+        toast.addEventListener('pointerdown', () => {
+          if (!this.gameOver && !toastObj.clicked) {
+            this.score += 1
+            this.scoreEl.textContent = this.score.toString().padStart(8, '0')
+            toastObj.clicked = true
+          }
+        })
+
+        this.toasts.push(toastObj)
+      }
+
+      checkGameOver() {
+        if (this.remainingLives <= 0) {
+          this.gameOver = true
+          clearInterval(this.spawnTimer)
+
+          this.gameOverScreenEl.setAttribute('visibility','visible')
+          this.finalScoreInfoEl.textContent = `Final Score: ${this.score}`
+        }
+      }
+
+      loop(timestamp) {
+        if (this.gameOver) {
+          requestAnimationFrame(this.loop)
+          return
+        }
+
+        this.toasts = this.toasts.filter(toast => {
+          const t = (timestamp - toast.startTime) / toast.duration
+
+          if (toast.clicked) {
+            const currentY = parseFloat(toast.el.getAttribute('y'))
+            const newY = currentY + toast.upwardSpeed
+            toast.el.setAttribute('y', newY)
+            toast.el.setAttribute('pointer-events', 'none')
+            if (newY < -50) {
+              toast.el.remove()
+              return false
+            }
+          } else {
+            if (t > 1) {
+              if (!toast.reachedBottom) {
+                this.remainingLives--
+                this.updateLives()
+                this.checkGameOver()
+                toast.reachedBottom = true
+              }
+              toast.el.remove()
+              return false
+            }
+
+            const x = toast.startX + (toast.endX - toast.startX) * t
+            const y = toast.startY - (4 * t * (1 - t)) * (toast.startY - toast.peakY)
+
+            toast.el.setAttribute('x', x)
+            toast.el.setAttribute('y', y)
+          }
+          return true
+        })
+
+        requestAnimationFrame(this.loop)
+      }
+      
+      updateLives() {
+        this.livesEl.textContent = `${this.remainingLives}X`
+      }
+    }
+
+    const game = new Game()
+  </script>
+</body>
+</html>
