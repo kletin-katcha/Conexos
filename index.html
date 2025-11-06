@@ -1,53 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conectare</title>
-
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Google Fonts: Inter & Source Code Pro -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Seus Estilos CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/common.css"> <!-- NOVO ARQUIVO DE ESTILOS COMUNS -->
-    <link rel="stylesheet" href="assets/css/pages-style.css">
-    <link rel="stylesheet" href="assets/css/feed-style.css">
-    <link rel="stylesheet" href="assets/css/chat-style.css">
-    <link rel="stylesheet" href="assets/css/pagamento-style.css">
-    <link rel="stylesheet" href="assets/css/login-style.css">
-
-
-    <!-- Aplica o tema salvo antes da renderização para evitar piscar -->
-    <script>
-      (function() {
-        const theme = localStorage.getItem('theme') || 'dark-theme';
-        document.documentElement.className = theme;
-      })();
-    </script>
-</head>
-<body>
-
-    <div class="main-wrapper">
-        <!-- Sidebar será injetado aqui pelo JS -->
-        <div id="sidebar-container"></div>
-
-        <!-- Conteúdo principal que será atualizado dinamicamente pelo Roteador -->
-        <div id="app-container"></div>
-    </div>
-
-    <!-- Elementos globais que aparecem em todas as páginas -->
-    <div id="music-player-container"></div>
-    
-    <!-- Scripts -->
-    <!-- iMask para a página de pagamento -->
-    <script src="https://unpkg.com/imask"></script> 
-    <!-- Ponto de entrada da sua aplicação SPA -->
-    <script type="module" src="js/app.js"></script>
-</body>
+  </head>
+  <body class="bg-gray-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
